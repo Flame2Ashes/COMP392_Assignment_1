@@ -1,0 +1,25 @@
+{
+  "name": "COMP392_Assignment_1",
+  "authors": [
+    "Angelina Gutierrez <angelina.ogutierrez@gmail.com>"
+  ],
+  "description": "COMP392-ASsignmentOne",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "http://github.com/Flame2Ashes/COMP392_Assignment_1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "Scripts/lib"
+  ],
+  "dependencies": {
+    "three.js": "threejs#*",
+    "dat-gui": "~0.5.1",
+    "stats.js": "*",
+    "threex.colliders": "*"
+  }
+}
