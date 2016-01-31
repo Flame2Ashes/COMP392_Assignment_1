@@ -44,5 +44,18 @@ var cubeMaterial;
 function init() {
     //Instantiate scene objects
     scene = new Scene();
+    //Set up the Default renderer
+    setupRenderer();
+    //Set up the Camera
+    setupCamera();
+    //Add an axis helper to the scene
+    axes = new AxisHelper(10);
+    scene.add(axes);
+    console.log("Added axis helper to scene");
+    //Add a Plane to the scene
+    plane = new gameObject(new PlaneGeometry(16, 16, 1, 1), new LambertMaterial({ color: 0x79b61 }), 0, 0, 0);
+    plane.rotation.x = 0.5 * Math.PI;
+    scene.add(plane);
+    console.log("Added Plane Primitive to scene");
 }
 //# sourceMappingURL=game.js.map
