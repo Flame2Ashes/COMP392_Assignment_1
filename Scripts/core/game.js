@@ -57,5 +57,14 @@ function init() {
     plane.rotation.x = 0.5 * Math.PI;
     scene.add(plane);
     console.log("Added Plane Primitive to scene");
+    //.....Cubeman
+    //Head
+    cubeMaterial = new LambertMaterial({ color: 0x00ff00 });
+    cubeGeometry = new CubeGeometry(2, 2, 2);
+    var cubeHead = new Mesh(cubeMaterial, cubeGeometry);
+    cubeHead.castShadow = true;
+    cubeHead.receiveShadow = true;
+    cubeHead.position.y = 1;
+    scene.add(cubeHead);
 }
 //# sourceMappingURL=game.js.map
