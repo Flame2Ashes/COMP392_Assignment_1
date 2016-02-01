@@ -81,7 +81,7 @@ function init() {
     //.....Cubeman
     
     //Body
-   cubeMaterial = new LambertMaterial({color:0x00ff00});
+   cubeMaterial = new LambertMaterial({color:0x99b3ff});
    cubeGeometry = new CubeGeometry(3, 5, 2);
    cubeBody = new Mesh(cubeGeometry, cubeMaterial);
    cubeBody.castShadow = true;
@@ -91,7 +91,7 @@ function init() {
    scene.add(cubeBody);
    
     //Head
-   cubeMaterial = new LambertMaterial({color:0x00ff00});
+   cubeMaterial = new LambertMaterial({color:0x0ffffe5});
    cubeGeometry = new CubeGeometry(2, 2, 2);
    cubeHead = new Mesh(cubeGeometry, cubeMaterial);
    cubeHead.castShadow = true;
@@ -102,48 +102,52 @@ function init() {
    
    
    //RightArm
-   cubeMaterial = new LambertMaterial({color:0x00ff00});
-   cubeGeometry = new CubeGeometry(1, 4, 1.5);
+   cubeMaterial = new LambertMaterial({color:0xffffe5});
+   cubeGeometry = new CubeGeometry(4, 1, 1.5);
    cubeRightArm = new Mesh(cubeGeometry, cubeMaterial);
    cubeRightArm.castShadow = true;
    cubeRightArm.receiveShadow = true;
-   cubeRightArm.position.x = -2;
+   cubeRightArm.position.x = 2;
+   cubeRightArm.position.y = 1;
    
    cubeBody.add(cubeRightArm);
    
    //LeftArm
-   cubeMaterial = new LambertMaterial({color:0x00ff00});
-   cubeGeometry = new CubeGeometry(1, 4, 1.5);
+   cubeMaterial = new LambertMaterial({color:0xffffe5});
+   cubeGeometry = new CubeGeometry(4, 1, 1.5);
    cubeLeftArm = new Mesh(cubeGeometry, cubeMaterial);
    cubeLeftArm.castShadow = true;
    cubeLeftArm.receiveShadow = true;
-   cubeLeftArm.position.x = 2;
+   cubeLeftArm.position.x = -2;
+   cubeLeftArm.position.y = 1;
    
    cubeBody.add(cubeLeftArm);
    
    //LeftLeg
    
-   cubeMaterial = new LambertMaterial({color:0x00ff00});
-   cubeGeometry = new CubeGeometry(1, 4, 2);
+   cubeMaterial = new LambertMaterial({color:0xffffe5});
+   cubeGeometry = new CubeGeometry(1, 2, 2);
    cubeLeftLeg = new Mesh(cubeGeometry, cubeMaterial);
    cubeLeftLeg.castShadow = true;
    cubeLeftLeg.receiveShadow = true;
    cubeLeftLeg.position.x = 1;
-   cubeLeftLeg.position.y = -2.5;
+   cubeLeftLeg.position.y = -3.5;
    
    cubeBody.add(cubeLeftLeg);
    
    //RightLeg
    
-   cubeMaterial = new LambertMaterial({color:0x00ff00});
-   cubeGeometry = new CubeGeometry(1, 4, 2);
+   cubeMaterial = new LambertMaterial({color:0xffffe5});
+   cubeGeometry = new CubeGeometry(1, 2, 2);
    cubeRightLeg = new Mesh(cubeGeometry, cubeMaterial);
    cubeRightLeg.castShadow = true;
    cubeRightLeg.receiveShadow = true;
    cubeRightLeg.position.x = -1;
-   cubeRightLeg.position.y = -2.5;
+   cubeRightLeg.position.y = -3.5;
    
    cubeBody.add(cubeRightLeg);
+   
+   console.log("Added cubeman to scene");
     
      // Add an AmbientLight to the scene
     ambientLight = new AmbientLight(0x090909);
