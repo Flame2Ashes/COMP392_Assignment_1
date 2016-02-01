@@ -127,7 +127,7 @@ function init() {
     console.log("Added a SpotLight Light to Scene");
     // add controls
     gui = new GUI();
-    control = new Control(0.05);
+    control = new Control(0.01, 0.01, 0.01);
     addControl(control);
     // Add framerate stats
     addStatsObject();
@@ -140,6 +140,9 @@ function init() {
 function gameLoop() {
     stats.update();
     //Loop rotation
+    cubeBody.rotation.x += control.rotationSpeedX;
+    cubeBody.rotation.y += control.rotationSpeedY;
+    cubeBody.rotation.z += control.rotationSpeedZ;
     //Render using requestAnimationFrame
     requestAnimationFrame(gameLoop);
     //Render the scene
@@ -150,8 +153,11 @@ function onResize() {
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
+//GUI controls
 function addControl(controlObject) {
-    gui.add(controlObject, 'rotationSpeed', -0.5, 0.5);
+    gui.add(controlObject, 'rotationSpeedX', -0.5, 0.5);
+    gui.add(controlObject, 'rotationSpeedY', -0.5, 0.5);
+    gui.add(controlObject, 'rotationSpeedZ', -0.5, 0.5);
 }
 function addStatsObject() {
     stats = new Stats();
