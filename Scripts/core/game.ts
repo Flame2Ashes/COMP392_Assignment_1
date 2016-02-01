@@ -71,9 +71,9 @@ function init() {
     //Add a Plane to the scene
     plane = new gameObject(
         new PlaneGeometry(16, 16, 1, 1),
-        new LambertMaterial( {color: 0x79b61}), 0, 0, 0);
+        new LambertMaterial( {color: 0x6699FF}), 0, 0, 0);
         
-    plane.rotation.x = 0.5 * Math.PI;
+    plane.rotation.x = -0.5 * Math.PI;
     
     scene.add(plane);
     console.log("Added Plane Primitive to scene");
@@ -85,9 +85,19 @@ function init() {
    cubeHead = new Mesh(cubeGeometry, cubeMaterial);
    cubeHead.castShadow = true;
    cubeHead.receiveShadow = true;
-   cubeHead.position.y = 1;
+   cubeHead.position.y = 10;
    
    scene.add(cubeHead);
+   
+   //Body
+   cubeMaterial = new LambertMaterial({color:0x00ff00});
+   cubeGeometry = new CubeGeometry(3, 6, 2);
+   cubeBody = new Mesh(cubeGeometry, cubeMaterial);
+   cubeBody.castShadow = true;
+   cubeBody.receiveShadow = true;
+   cubeBody.position.y = 6;
+   
+   scene.add(cubeBody);
     
      // Add an AmbientLight to the scene
     ambientLight = new AmbientLight(0x090909);
@@ -96,7 +106,7 @@ function init() {
 	
     // Add a SpotLight to the scene
     spotLight = new SpotLight(0xffffff);
-    spotLight.position.set(5.6, 23.1, 5.4);
+    spotLight.position.set(5.6, 25, 5.4);
     spotLight.rotation.set(-0.8,42.7,19.5);
     spotLight.castShadow = true;
     scene.add(spotLight);
@@ -122,8 +132,11 @@ function init() {
     function gameLoop(): void {
         stats.update();
         //Loop rotation
+        
         //Render using requestAnimationFrame
+        requestAnimationFrame(gameLoop);
         //Render the scene
+        renderer.render(scene, camera);
     }
 
 function onResize(): void {
