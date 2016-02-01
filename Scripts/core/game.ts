@@ -47,8 +47,8 @@ var cubeMaterial:LambertMaterial;
 //Cubeman body parts
 var cubeHead: Mesh;
 var cubeBody: Mesh;
-var cubeLeftArm: Mesh;
 var cubeRightArm: Mesh;
+var cubeLeftArm: Mesh;
 var cubeLeftLeg: Mesh;
 var cubeRightLeg: Mesh;
 
@@ -79,25 +79,71 @@ function init() {
     console.log("Added Plane Primitive to scene");
     
     //.....Cubeman
+    
+    //Body
+   cubeMaterial = new LambertMaterial({color:0x00ff00});
+   cubeGeometry = new CubeGeometry(3, 5, 2);
+   cubeBody = new Mesh(cubeGeometry, cubeMaterial);
+   cubeBody.castShadow = true;
+   cubeBody.receiveShadow = true;
+   cubeBody.position.y = 6.5;
+   
+   scene.add(cubeBody);
+   
     //Head
    cubeMaterial = new LambertMaterial({color:0x00ff00});
    cubeGeometry = new CubeGeometry(2, 2, 2);
    cubeHead = new Mesh(cubeGeometry, cubeMaterial);
    cubeHead.castShadow = true;
    cubeHead.receiveShadow = true;
-   cubeHead.position.y = 10;
+   cubeHead.position.y = 3.5;
    
-   scene.add(cubeHead);
+   cubeBody.add(cubeHead);
    
-   //Body
+   
+   //RightArm
    cubeMaterial = new LambertMaterial({color:0x00ff00});
-   cubeGeometry = new CubeGeometry(3, 6, 2);
-   cubeBody = new Mesh(cubeGeometry, cubeMaterial);
-   cubeBody.castShadow = true;
-   cubeBody.receiveShadow = true;
-   cubeBody.position.y = 6;
+   cubeGeometry = new CubeGeometry(1, 4, 1.5);
+   cubeRightArm = new Mesh(cubeGeometry, cubeMaterial);
+   cubeRightArm.castShadow = true;
+   cubeRightArm.receiveShadow = true;
+   cubeRightArm.position.x = -2;
    
-   scene.add(cubeBody);
+   cubeBody.add(cubeRightArm);
+   
+   //LeftArm
+   cubeMaterial = new LambertMaterial({color:0x00ff00});
+   cubeGeometry = new CubeGeometry(1, 4, 1.5);
+   cubeLeftArm = new Mesh(cubeGeometry, cubeMaterial);
+   cubeLeftArm.castShadow = true;
+   cubeLeftArm.receiveShadow = true;
+   cubeLeftArm.position.x = 2;
+   
+   cubeBody.add(cubeLeftArm);
+   
+   //LeftLeg
+   
+   cubeMaterial = new LambertMaterial({color:0x00ff00});
+   cubeGeometry = new CubeGeometry(1, 4, 2);
+   cubeLeftLeg = new Mesh(cubeGeometry, cubeMaterial);
+   cubeLeftLeg.castShadow = true;
+   cubeLeftLeg.receiveShadow = true;
+   cubeLeftLeg.position.x = 1;
+   cubeLeftLeg.position.y = -2.5;
+   
+   cubeBody.add(cubeLeftLeg);
+   
+   //RightLeg
+   
+   cubeMaterial = new LambertMaterial({color:0x00ff00});
+   cubeGeometry = new CubeGeometry(1, 4, 2);
+   cubeRightLeg = new Mesh(cubeGeometry, cubeMaterial);
+   cubeRightLeg.castShadow = true;
+   cubeRightLeg.receiveShadow = true;
+   cubeRightLeg.position.x = -1;
+   cubeRightLeg.position.y = -2.5;
+   
+   cubeBody.add(cubeRightLeg);
     
      // Add an AmbientLight to the scene
     ambientLight = new AmbientLight(0x090909);
