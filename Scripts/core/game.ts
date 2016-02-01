@@ -34,7 +34,6 @@ var scene: Scene;
 var renderer: Renderer;
 var camera: PerspectiveCamera;
 var axes: AxisHelper;
-var cube: Mesh;
 var plane: Mesh;
 var sphere: Mesh;
 var ambientLight: AmbientLight;
@@ -45,6 +44,13 @@ var stats: Stats;
 var step: number = 0;
 var cubeGeometry:CubeGeometry;
 var cubeMaterial:LambertMaterial;
+//Cubeman body parts
+var cubeHead: Mesh;
+var cubeBody: Mesh;
+var cubeLeftArm: Mesh;
+var cubeRightArm: Mesh;
+var cubeLeftLeg: Mesh;
+var cubeRightLeg: Mesh;
 
 function init() {
     
@@ -74,13 +80,86 @@ function init() {
     
     //.....Cubeman
     //Head
-    cubeMaterial = new LambertMaterial({color:0x00ff00});
-    cubeGeometry = new CubeGeometry(2, 2, 2);
-    var cubeHead = new Mesh(cubeMaterial, cubeGeometry);
+   cubeMaterial = new LambertMaterial({color:0x00ff00});
+   cubeGeometry = new CubeGeometry(2, 2, 2);
+   cubeHead = new Mesh(cubeGeometry, cubeMaterial);
    cubeHead.castShadow = true;
    cubeHead.receiveShadow = true;
    cubeHead.position.y = 1;
    
    scene.add(cubeHead);
     
+     // Add an AmbientLight to the scene
+    ambientLight = new AmbientLight(0x090909);
+    scene.add(ambientLight);
+    console.log("Added an Ambient Light to Scene");
+	
+    // Add a SpotLight to the scene
+    spotLight = new SpotLight(0xffffff);
+    spotLight.position.set(5.6, 23.1, 5.4);
+    spotLight.rotation.set(-0.8,42.7,19.5);
+    spotLight.castShadow = true;
+    scene.add(spotLight);
+    console.log("Added a SpotLight Light to Scene");
+    
+     
+    // add controls
+    gui = new GUI();
+    control = new Control(0.05);
+    addControl(control);
+
+    // Add framerate stats
+    addStatsObject();
+    console.log("Added Stats to scene");
+
+    document.body.appendChild(renderer.domElement);
+    gameLoop(); // render the scene	
+    
+    window.addEventListener('resize', onResize, false);
+}
+
+    //Main game loop
+    function gameLoop(): void {
+        stats.update();
+        //Loop rotation
+        //Render using requestAnimationFrame
+        //Render the scene
+    }
+
+function onResize(): void {
+   camera.aspect = window.innerWidth / window.innerHeight; 
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth,window.innerHeight);
+}
+
+function addControl(controlObject: Control): void {
+    gui.add(controlObject, 'rotationSpeed',-0.5,0.5);
+}
+
+function addStatsObject() {
+    stats = new Stats();
+    stats.setMode(0);
+    stats.domElement.style.position = 'absolute';
+    stats.domElement.style.left = '0px';
+    stats.domElement.style.top = '0px';
+    document.body.appendChild(stats.domElement);
+}
+
+//Set up default renderer for the scene
+function setupRenderer(): void {
+    renderer = new Renderer();
+    renderer.setClearColor(0xEEEEEE, 1.0);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.shadowMap.enabled = true;
+    console.log("Finished setting up Renderer");
+}
+
+//Set up main camera for the scene
+function setupCamera(): void {
+    camera = new PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.x = -20;
+    camera.position.y = 25;
+    camera.position.z = 20;
+    camera.lookAt(new Vector3(5, 0, 0));
+    console.log("Finished setting up Camera");
 }
