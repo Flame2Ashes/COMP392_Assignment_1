@@ -1,5 +1,10 @@
 /// <reference path="_reference.ts"/>
 // MAIN GAME FILE
+//Source file name: game.ts
+//Last modified by: Angelina Gutierrez
+//Date last modified: 02/02/2016
+//Program description: This file sets up the scene, creates a body out of cubes,
+//and rotates the body on the X, Y, and Z axes.
 // THREEJS Aliases
 var Scene = THREE.Scene;
 var Renderer = THREE.WebGLRenderer;
@@ -63,8 +68,8 @@ function init() {
     plane.rotation.x = -0.5 * Math.PI;
     scene.add(plane);
     console.log("Added Plane Primitive to scene");
-    //.....Cubeman
-    //Body
+    //Add the cubeman
+    //Create Body
     cubeMaterial = new LambertMaterial({ color: 0x99b3ff });
     cubeGeometry = new CubeGeometry(3, 5, 2);
     cubeBody = new Mesh(cubeGeometry, cubeMaterial);
@@ -72,15 +77,16 @@ function init() {
     cubeBody.receiveShadow = true;
     cubeBody.position.y = 6.5;
     scene.add(cubeBody);
-    //Head
+    //Create Head
     cubeMaterial = new LambertMaterial({ color: 0x0ffffe5 });
     cubeGeometry = new CubeGeometry(2, 2, 2);
     cubeHead = new Mesh(cubeGeometry, cubeMaterial);
     cubeHead.castShadow = true;
     cubeHead.receiveShadow = true;
     cubeHead.position.y = 3.5;
+    //Add rest of body parts to body mesh
     cubeBody.add(cubeHead);
-    //RightArm
+    //Create Right Arm
     cubeMaterial = new LambertMaterial({ color: 0xffffe5 });
     cubeGeometry = new CubeGeometry(4, 1, 1.5);
     cubeRightArm = new Mesh(cubeGeometry, cubeMaterial);
@@ -89,7 +95,7 @@ function init() {
     cubeRightArm.position.x = 2;
     cubeRightArm.position.y = 1;
     cubeBody.add(cubeRightArm);
-    //LeftArm
+    //Create Left Arm
     cubeMaterial = new LambertMaterial({ color: 0xffffe5 });
     cubeGeometry = new CubeGeometry(4, 1, 1.5);
     cubeLeftArm = new Mesh(cubeGeometry, cubeMaterial);
@@ -98,7 +104,7 @@ function init() {
     cubeLeftArm.position.x = -2;
     cubeLeftArm.position.y = 1;
     cubeBody.add(cubeLeftArm);
-    //LeftLeg
+    //Create Left Leg
     cubeMaterial = new LambertMaterial({ color: 0xffffe5 });
     cubeGeometry = new CubeGeometry(1, 2, 2);
     cubeLeftLeg = new Mesh(cubeGeometry, cubeMaterial);
@@ -107,7 +113,7 @@ function init() {
     cubeLeftLeg.position.x = 1;
     cubeLeftLeg.position.y = -3.5;
     cubeBody.add(cubeLeftLeg);
-    //RightLeg
+    //Create Right Leg
     cubeMaterial = new LambertMaterial({ color: 0xffffe5 });
     cubeGeometry = new CubeGeometry(1, 2, 2);
     cubeRightLeg = new Mesh(cubeGeometry, cubeMaterial);
@@ -151,6 +157,7 @@ function gameLoop() {
     //Render the scene
     renderer.render(scene, camera);
 }
+//Set aspect based on window size
 function onResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
@@ -158,10 +165,14 @@ function onResize() {
 }
 //GUI controls
 function addControl(controlObject) {
+    //Rotation controls
     gui.add(controlObject, 'rotationSpeedX', -0.5, 0.5);
     gui.add(controlObject, 'rotationSpeedY', -0.5, 0.5);
     gui.add(controlObject, 'rotationSpeedZ', -0.5, 0.5);
+    //Color controls
+    gui.add(controlObject, 'changeColour');
 }
+//Statistics
 function addStatsObject() {
     stats = new Stats();
     stats.setMode(0);

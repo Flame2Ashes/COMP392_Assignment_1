@@ -1,6 +1,11 @@
 /// <reference path="_reference.ts"/>
 
 // MAIN GAME FILE
+//Source file name: game.ts
+//Last modified by: Angelina Gutierrez
+//Date last modified: 02/02/2016
+//Program description: This file sets up the scene, creates a body out of cubes,
+//and rotates the body on the X, Y, and Z axes.
 
 // THREEJS Aliases
 import Scene = THREE.Scene;
@@ -78,9 +83,9 @@ function init() {
     scene.add(plane);
     console.log("Added Plane Primitive to scene");
     
-    //.....Cubeman
+    //Add the cubeman
     
-    //Body
+    //Create Body
    cubeMaterial = new LambertMaterial({color:0x99b3ff});
    cubeGeometry = new CubeGeometry(3, 5, 2);
    cubeBody = new Mesh(cubeGeometry, cubeMaterial);
@@ -90,7 +95,7 @@ function init() {
    
    scene.add(cubeBody);
    
-    //Head
+    //Create Head
    cubeMaterial = new LambertMaterial({color:0x0ffffe5});
    cubeGeometry = new CubeGeometry(2, 2, 2);
    cubeHead = new Mesh(cubeGeometry, cubeMaterial);
@@ -98,10 +103,11 @@ function init() {
    cubeHead.receiveShadow = true;
    cubeHead.position.y = 3.5;
    
-   cubeBody.add(cubeHead);
+   //Add rest of body parts to body mesh
+   cubeBody.add(cubeHead); 
    
    
-   //RightArm
+   //Create Right Arm
    cubeMaterial = new LambertMaterial({color:0xffffe5});
    cubeGeometry = new CubeGeometry(4, 1, 1.5);
    cubeRightArm = new Mesh(cubeGeometry, cubeMaterial);
@@ -112,7 +118,7 @@ function init() {
    
    cubeBody.add(cubeRightArm);
    
-   //LeftArm
+   //Create Left Arm
    cubeMaterial = new LambertMaterial({color:0xffffe5});
    cubeGeometry = new CubeGeometry(4, 1, 1.5);
    cubeLeftArm = new Mesh(cubeGeometry, cubeMaterial);
@@ -123,7 +129,7 @@ function init() {
    
    cubeBody.add(cubeLeftArm);
    
-   //LeftLeg
+   //Create Left Leg
    
    cubeMaterial = new LambertMaterial({color:0xffffe5});
    cubeGeometry = new CubeGeometry(1, 2, 2);
@@ -135,7 +141,7 @@ function init() {
    
    cubeBody.add(cubeLeftLeg);
    
-   //RightLeg
+   //Create Right Leg
    
    cubeMaterial = new LambertMaterial({color:0xffffe5});
    cubeGeometry = new CubeGeometry(1, 2, 2);
@@ -190,7 +196,7 @@ function init() {
         //Render the scene
         renderer.render(scene, camera);
     }
-
+//Set aspect based on window size
 function onResize(): void {
    camera.aspect = window.innerWidth / window.innerHeight; 
     camera.updateProjectionMatrix();
@@ -199,11 +205,15 @@ function onResize(): void {
 
 //GUI controls
 function addControl(controlObject: Control): void {
+    //Rotation controls
     gui.add(controlObject, 'rotationSpeedX', -0.5, 0.5);
     gui.add(controlObject, 'rotationSpeedY', -0.5, 0.5);
     gui.add(controlObject, 'rotationSpeedZ', -0.5, 0.5);
+    //Color controls
+    gui.add(controlObject, 'changeColour');
+   
 }
-
+//Statistics
 function addStatsObject() {
     stats = new Stats();
     stats.setMode(0);
