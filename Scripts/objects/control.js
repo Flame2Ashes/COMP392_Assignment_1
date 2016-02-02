@@ -9,6 +9,11 @@ var objects;
             this.rotationSpeedY = rotationSpeedY;
             this.rotationSpeedZ = rotationSpeedZ;
         }
+        //PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++
+        //Change colour
+        Control.prototype.changeColour = function () {
+            cubeBody.material = new LambertMaterial({ color: 0x000000 });
+        };
         return Control;
     })();
     objects.Control = Control;

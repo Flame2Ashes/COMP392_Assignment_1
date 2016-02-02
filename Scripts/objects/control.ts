@@ -15,6 +15,9 @@ module objects {
         }
         
         //PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++
-     
+     //Change colour
+     public changeColour(): void {
+        cubeBody.material = new LambertMaterial({color: 0x000000});
+     }
     }
 }
