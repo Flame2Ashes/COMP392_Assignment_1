@@ -2,7 +2,7 @@
 // MAIN GAME FILE
 //Source file name: game.ts
 //Last modified by: Angelina Gutierrez
-//Date last modified: 02/02/2016
+//Date last modified: 02/03/2016
 //Program description: This file sets up the scene, creates a body out of cubes,
 //and rotates the body on the X, Y, and Z axes.
 // THREEJS Aliases

@@ -1,4 +1,9 @@
 /// <reference path="../../typings/tsd.d.ts"/>
+//Source file name: control.ts
+//Last modified by: Angelina Gutierrez
+//Date last modified: 02/02/2016
+//Program description: This file contains the classes that control rotation speed
+//on the X, Y, and Z axes, as well as colour control.
 
 module objects {
     // CONTROL CLASS ++++++++++++++++++++++++++++++++++++++++++
