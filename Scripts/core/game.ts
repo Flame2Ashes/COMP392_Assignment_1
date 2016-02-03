@@ -162,8 +162,7 @@ function init() {
 	
     // Add a SpotLight to the scene
     spotLight = new SpotLight(0xffffff);
-    spotLight.position.set(5.6, 25, 5.4);
-    spotLight.rotation.set(-0.8,42.7,19.5);
+    spotLight.position.set(-40, 60, 10);
     spotLight.castShadow = true;
     scene.add(spotLight);
     console.log("Added a SpotLight Light to Scene");
